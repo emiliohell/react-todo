@@ -14,13 +14,22 @@ const todoSlice = createSlice({
             //it will mutate the state and cause bugs!
         },
         deleteTodo: (state, action) => {
-            state.todos.splice(0, 1)
-            // state.todos.indexOf(action.payload)
-        }
+            state.todos.splice(action.payload, 1)
+            // REMEBER THIS IS A MUTABLE ACTION, IT CAN BE USED HERE THANKS TO TOOLKIT REDUX.
+
+        },
+        saveTodo: (state, action) => {
+            // REMEBER THIS IS A MUTABLE ACTION, IT CAN BE USED HERE THANKS TO TOOLKIT REDUX.
+            state.todos.splice(action.payload.index, 1, { ...action.payload.value, text: action.payload.todo, edit: false })
+        },
+        editTodo: (state, action) => {
+            state.todos.splice(action.payload.index, 1, { ...action.payload.value, edit: true })
+            console.log(action.payload.edit)
+        },
     }
 })
 
-export const { addTodo, deleteTodo } = todoSlice.actions
+export const { addTodo, deleteTodo, saveTodo, editTodo } = todoSlice.actions
 
 export const selectTodo = state => state.todos;
 
