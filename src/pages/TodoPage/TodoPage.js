@@ -1,5 +1,5 @@
 import React from 'react'
-import TestButton from '../../components/TestButton'
+// import TestButton from '../../components/TestButton'
 
 const TodoPage = () => {
     const [todo, setTodo] = React.useState('')
@@ -15,11 +15,11 @@ const TodoPage = () => {
     }
 
     return <div>
-        <TestButton consoleLog={todoList} />
+        {/* <TestButton consoleLog={todoList} /> */}
         <h1>Hello Todo Page!</h1>
         <input onChange={handleTodoInput} value={todo} ></input>
         <button onClick={handleAddButton}>Add</button>
-        <h1>{todo}</h1>
+        {/* <h1>{todo}</h1> */}
         {todoList.map((todo, index) => <h1 key={index}>{todo}</h1>)}
     </div>
 }
