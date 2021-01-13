@@ -1,15 +1,10 @@
 import './App.css';
-
-// import TodoPage from './pages/TodoPage'
-// import { Counter } from './redux/Counter'
-import { Todos } from './redux/Todos'
+import TodoPage from './pages/TodoPage'
 
 function App() {
   return (
     <div className="App">
-      <Todos />
-      {/* <Counter /> */}
-      {/* <TodoPage /> */}
+      <TodoPage />
     </div>
   );
 }
