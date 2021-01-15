@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Todo.module.css'
 import {
     useDispatch,
 } from 'react-redux'
@@ -10,6 +11,7 @@ import {
 
 const Todo = ({ value, index }) => {
     const [todo, setTodo] = React.useState('')
+    const searchInput = React.useRef(null)
     const dispatch = useDispatch()
 
     const handleTodoInput = (e) => {
@@ -29,10 +31,17 @@ const Todo = ({ value, index }) => {
         setTodo('')
     }
 
-    return <div>
+    React.useEffect(() => {
+        if (value.edit) {
+            setTodo(value.text)
+            console.log(searchInput.current.focus())
+        }
+    }, [value])
+
+    return <div className={styles.divTodo}>
         {value.edit ?
-            <input onChange={handleTodoInput} placeholder={value.text} value={todo} /> :
-            <h1>{value.text}</h1>
+            <div className={styles.divEditInput}><input ref={searchInput} onChange={handleTodoInput} placeholder={value.text} value={todo} className={styles.todoEditInput} /></div> :
+            <h1 className={styles.todoH1}>{value.text}</h1>
         }
         <button onClick={handleDelete}>Delete</button>
         {value.edit ?
